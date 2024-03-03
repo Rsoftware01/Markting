@@ -44,7 +44,6 @@ class FormPagina3(FlaskForm):
                                            ('moderado', 'Moderado: Estou disposto(a) a assumir algum risco em busca de retornos moderados. (IPCA+7%)'),
                                            ('agressivo', 'Agressivo: Estou disposto(a) a assumir riscos significativos em busca de retornos mais altos. (IPCA+10%)')],
                                   validators=[DataRequired()])
-    tolerancia_risco_outras = StringField('Por favor, especifique:', validators=[Optional()])
     submit = SubmitField('Enviar')
 
     def validate_email(self, email):
