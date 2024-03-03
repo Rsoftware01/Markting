@@ -44,10 +44,6 @@ def info3():
                           usuario_id=1)  # Insira o ID do usuário adequado aqui
         database.session.add(info3)
         database.session.commit()
-        return redirect(url_for('resultado'))  # Redireciona para a página de resultado após o envio
+        return redirect(url_for('homepage'))  # Redireciona para a página de resultado após o envio
     return render_template("info3.html", form=form3)
 
-@app.route("/perfil/<usuario>")
-@login_required
-def perfil (usuario):
-    return render_template("perfil.html", usuario=usuario)
