@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>
+        {% block titulo %}
+            Calculadora de investimentos
+        {% endblock %}
+    </title>
+    <style>
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #1657af;
+        }
+        .container {
+            text-align: center;
+        }
+        h1 {
+             color: #ffffff; /* Cor branca */
+        }
+        .bold-label {
+            font-weight: bold;
+            font-size: 18px;
+         }
+
+
+        .form-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+            width: 700px; /* Largura fixa */
+            margin: 20px; /* Margem externa adicionada */
+            min-height: 300px;
+        }
+        .form-container div {
+            margin-bottom: 15px;
+        }
+        .form-container input[type="text"],
+        .form-container input[type="email"],
+        .form-container input[type="tel"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+        .form-container input[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .form-container input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+        .objetivos-container {
+             display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            margin-felt: 0px;
+            }
+          .objetivos-container > div {
+             margin-right: 20px; /* Ajuste a margem conforme necessário */
+          }
+
+    </style>
+</head>
+{% block body %}
+<body>
+    <div class="container">
+        <img class="logo" src="https://petropolisinvestimentos.com.br/wp-content/uploads/2023/09/logo-neg-simple.png.webp" alt="Logo">
+        <h1>Seja Bem Vindo!</h1>
+        <div class="form-container">
+            {% block formulario %}
+            <form method="POST">
+                {{ form.csrf_token }}
+                <div>
+                    {{ form.nome.label(class="bold-label") }}<br>
+                    {{ form.nome() }}
+                </div>
+                <div>
+                    {{ form.telefone.label(class="bold-label") }}<br>
+                    {{ form.telefone() }}
+                </div>
+                <div>
+                    {{ form.email.label(class="bold-label") }}<br>
+                    {{ form.email() }}
+                </div>
+                <div>
+                    {{ form.submit(class="bold-label") }}
+                </div>
+            </form>
+            {% endblock %}
+        </div>
+    </div>
+</body>
+{% endblock %}
+</html>

@@ -1,0 +1,48 @@
+{% extends "homepage.html" %}
+
+{% block titulo %}
+    Calculadora de investimentos
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <img class="logo" src="https://petropolisinvestimentos.com.br/wp-content/uploads/2023/09/logo-neg-simple.png.webp" alt="Logo">
+        <h1 class="h1">Calculadora de Aposentadoria</h1>
+        <div class="form-container">
+            {% block formulario %}
+                <form method="POST">
+                    {{ form.csrf_token }}
+                    <div>
+                        {{ form.idade_hoje.label(class="bold-label") }}
+                        {{ form.idade_hoje() }}
+                    </div>
+                    <div>
+                        {{ form.valor_investido.label(class="bold-label") }}
+                        {{ form.valor_investido(class="objetivos-container") }}
+                    </div>
+                    <div>
+                        {{ form.poupar_mes.label(class="bold-label") }}
+                        {{ form.poupar_mes(class="objetivos-container") }}
+                    </div>
+                    <div>
+                        {{ form.idade_aposentar.label(class="bold-label") }}
+                        {{ form.idade_aposentar() }}
+                    </div>
+                    <div>
+                        {{ form.renda_aposentar.label(class="bold-label") }}
+                        {{ form.renda_aposentar(class="objetivos-container") }}
+                    </div>
+                    <div>
+                        {{ form.tolerancia_risco.label(class="bold-label") }}
+                        <br>
+                        {{ form.tolerancia_risco(class="objetivos-container") }}
+                        {{ form.tolerancia_risco_outras(class="objetivos-container") }}
+                    </div>
+                    <div>
+                        {{ form.submit(class="bold-label") }}
+                    </div>
+                </form>
+            {% endblock %}
+        </div>
+    </div>
+{% endblock %}
