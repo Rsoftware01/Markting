@@ -99,6 +99,11 @@
                     {{ form.email() }}
                 </div>
                 <div>
+                    {{ form.indicou.label(class="bold-label") }}<br>
+                    {{ form.indicou(class="objetivos-container") }}
+                    {{ form.outras_indicacoes(class="objetivos-container") }}
+                </div>
+                <div>
                     {{ form.submit(class="bold-label") }}
                 </div>
             </form>

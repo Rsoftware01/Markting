@@ -3,10 +3,20 @@ from wtforms import StringField, SubmitField, RadioField, IntegerField, FloatFie
 from wtforms.validators import DataRequired, Email, Optional, ValidationError
 from fakepinterest.models import Usuario
 
+from flask_wtf import FlaskForm
+from wtforms import StringField, SubmitField, RadioField
+from wtforms.validators import DataRequired, Email, Optional
+
 class FormPagina1(FlaskForm):
     nome = StringField('Nome: ', validators=[DataRequired()])
     telefone = StringField('Telefone para envio dos Resultados: ', validators=[DataRequired()])
     email = StringField('E-mail', validators=[DataRequired(), Email()])
+    indicou = RadioField('Quem te indicou:',
+                         choices=[('Assessor(a)', 'Assessor(a)'),
+                                  ('Redes sociais', 'Redes sociais'),
+                                  ('Outras', 'Outras')],
+                         validators=[DataRequired()])
+    outras_indicacoes = StringField('Outras indicações:', validators=[Optional()])
     submit = SubmitField('Próxima Página')
 
 class FormPagina2(FlaskForm):
@@ -44,8 +54,8 @@ class FormPagina3(FlaskForm):
                                            ('moderado', 'Moderado: Estou disposto(a) a assumir algum risco em busca de retornos moderados. (IPCA+7%)'),
                                            ('agressivo', 'Agressivo: Estou disposto(a) a assumir riscos significativos em busca de retornos mais altos. (IPCA+10%)')],
                                   validators=[DataRequired()])
-    tolerancia_risco_outras = StringField('Por favor, especifique:', validators=[Optional()])
     submit = SubmitField('Enviar')
+
 
     def validate_email(self, email):
         usuario = Usuario.query.filter_by(email=email.data).first()

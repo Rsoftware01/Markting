@@ -12,14 +12,19 @@ class Usuario(database.Model, UserMixin):
     nome = database.Column(database.String, nullable=False)
     email = database.Column(database.String, nullable=False, unique=True)
     telefone = database.Column(database.String, nullable=False)
+    indicou = database.Column(database.String, nullable=False)
+    outras_indicacoes = database.Column(database.String, nullable=False)
     infos = database.relationship("Info", backref="usuario", lazy=True)  # Relacionamento com a classe Info
     outras_infos = database.relationship("OutraInfo", backref="usuario", lazy=True)  # Relacionamento com a classe OutraInfo
 
 class Info(database.Model):
     id = database.Column(database.Integer, primary_key=True)
     objetivoimediato = database.Column(database.String, nullable=False)
+    objetivo_imediato_outras = database.Column(database.String, nullable=False)
     objetivo3a5anos = database.Column(database.String, nullable=False)
+    objetivo_3a5_anos_outras = database.Column(database.String, nullable=False)
     objetivo5a10anos = database.Column(database.String, nullable=False)
+    objetivo_5a10_anos_outras = database.Column(database.String, nullable=False)
     usuario_id = database.Column(database.Integer, database.ForeignKey('usuario.id'), nullable=False)  # Chave estrangeira
 
 class OutraInfo(database.Model):  # Renomeando para evitar conflito

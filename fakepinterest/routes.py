@@ -12,7 +12,9 @@ def homepage():
     if formlogin.validate_on_submit():
         usuarioo = Usuario(nome=formlogin.nome.data,
                           telefone=formlogin.telefone.data,
-                          email=formlogin.email.data)
+                          email=formlogin.email.data,
+                           indicou=formlogin.indicou.data,
+                           outras_indicacoes=formlogin.outras_indicacoes.data)
         database.session.add(usuarioo)
         database.session.commit()
         return redirect(url_for('info2'))  # Redireciona para a próxima página após o envio
@@ -23,8 +25,11 @@ def info2():
     form2 = FormPagina2()
     if form2.validate_on_submit():
         info = Info(objetivoimediato=form2.objetivo_imediato.data,
+                    objetivo_imediato_outras=form2.objetivo_imediato_outras.data,
                     objetivo3a5anos=form2.objetivo_3a5_anos.data,
+                    objetivo_3a5_anos_outras=form2.objetivo_3a5_anos_outras.data,
                     objetivo5a10anos=form2.objetivo_5a10_anos.data,
+                    objetivo_5a10_anos_outras=form2.objetivo_5a10_anos_outras.data,
                     usuario_id=1)  # Insira o ID do usuário adequado aqui
         database.session.add(info)
         database.session.commit()
