@@ -1,0 +1,76 @@
+{% extends "homepage.html" %}
+
+{% block titulo %}
+    Calculadora de investimentos
+{% endblock %}
+
+{% block style %}
+    <style>
+        /* Seus estilos CSS existentes aqui... */
+    </style>
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <img class="img" src="https://petropolisinvestimentos.com.br/wp-content/uploads/2023/09/logo-neg-simple.png.webp" alt="Logo">
+        <h1 class="titu">Calculadora de Aposentadoria</h1>
+        <div class="form-container">
+            <form id="calculadora-form">
+                <div>
+                    <label class="bold-label" for="idade_hoje">Qual a sua idade hoje?</label>
+                    <input type="number" id="idade_hoje" name="idade_hoje" required>
+                </div>
+                <div>
+                    <label class="bold-label" for="valor_investido">Você já possui algum valor investido, qual?</label>
+                    <input type="number" id="valor_investido" name="valor_investido" required>
+                </div>
+                <div>
+                    <label class="bold-label" for="poupar_mes">Quanto conseguiria poupar por mês?</label>
+                    <input type="number" id="poupar_mes" name="poupar_mes" required>
+                </div>
+                <div>
+                    <label class="bold-label" for="idade_aposentar">Qual idade você pretende se aposentar?</label>
+                    <input type="number" id="idade_aposentar" name="idade_aposentar" required>
+                </div>
+                <div>
+                    <label class="bold-label" for="renda_aposentar">Qual renda você gostaria para a sua aposentadoria?</label>
+                    <input type="number" id="renda_aposentar" name="renda_aposentar" required>
+                </div>
+                <div class="bold-label choices label">
+                    <p>Qual é o seu nível de tolerância ao risco quando se trata de investimentos?</p>
+                    <label><input type="radio" name="tolerancia_risco" value="conservador"> Conservador</label>
+                    <label><input type="radio" name="tolerancia_risco" value="moderado"> Moderado</label>
+                    <label><input type="radio" name="tolerancia_risco" value="agressivo"> Agressivo</label>
+                </div>
+                <div>
+                    <button type="button" class="bold-label butt" onclick="calcularAposentadoria()">Enviar</button>
+                </div>
+            </form>
+            <div id="resultado"></div>
+        </div>
+    </div>
+
+    <script>
+        function calcularAposentadoria() {
+            // Obter os valores dos campos de entrada
+            var idadeHoje = parseFloat(document.getElementById('idade_hoje').value);
+            var valorInvestido = parseFloat(document.getElementById('valor_investido').value);
+            var pouparMes = parseFloat(document.getElementById('poupar_mes').value);
+            var idadeAposentar = parseFloat(document.getElementById('idade_aposentar').value);
+            var rendaAposentar = parseFloat(document.getElementById('renda_aposentar').value);
+            var toleranciaRisco = document.querySelector('input[name="tolerancia_risco"]:checked').value;
+
+            // Fazer o cálculo com base nos valores fornecidos
+            var anosParaAposentadoria = idadeAposentar - idadeHoje;
+            var valorTotalPoupado = (anosParaAposentadoria * 12) * pouparMes + valorInvestido;
+            var rendaMensalNecessaria = rendaAposentar / 12;
+
+            // Exibir os resultados
+            var resultadoHTML = "<h2>Resultados do Cálculo:</h2>";
+            resultadoHTML += "<p>Para se aposentar, você precisa poupar um total de R$ " + valorTotalPoupado.toFixed(2) + ".</p>";
+            resultadoHTML += "<p>Isso significa que você precisa poupar aproximadamente R$ " + rendaMensalNecessaria.toFixed(2) + " por mês.</p>";
+
+            document.getElementById('resultado').innerHTML = resultadoHTML;
+        }
+    </script>
+{% endblock %}

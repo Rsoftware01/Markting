@@ -1,6 +1,6 @@
 # criar as rotas do site, os links
 
-from flask import render_template, redirect, url_for
+from flask import render_template, redirect, url_for, request
 from fakepinterest import app, database
 from fakepinterest.models import Usuario, Info, OutraInfo
 from flask_login import login_required
@@ -36,10 +36,12 @@ def info2():
         return redirect(url_for('info3'))  # Redireciona para a próxima página após o envio
     return render_template("info2.html", form=form2)
 
+
 @app.route("/info3", methods=["GET", "POST"])
 def info3():
     form3 = FormPagina3()
     if form3.validate_on_submit():
+        # Salva os dados do formulário no banco de dados
         info3 = OutraInfo(idadehoje=form3.idade_hoje.data,
                           valorinvestido=form3.valor_investido.data,
                           pouparmes=form3.poupar_mes.data,
@@ -49,6 +51,27 @@ def info3():
                           usuario_id=1)  # Insira o ID do usuário adequado aqui
         database.session.add(info3)
         database.session.commit()
-        return redirect(url_for('homepage'))  # Redireciona para a página de resultado após o envio
+
+        # Realiza os cálculos com base nos dados fornecidos pelo usuário
+        idade_hoje = form3.idade_hoje.data
+        valor_investido = form3.valor_investido.data
+        poupar_mes = form3.poupar_mes.data
+        idade_aposentar = form3.idade_aposentar.data
+        renda_aposentar = form3.renda_aposentar.data
+        tolerancia_risco = form3.tolerancia_risco.data
+
+        # Aqui você pode realizar os cálculos com base nos dados fornecidos pelo usuário
+        # Por exemplo:
+        anos_para_aposentar = idade_aposentar - idade_hoje
+        valor_total_poupanca = valor_investido + (poupar_mes * 12 * anos_para_aposentar)
+        # E assim por diante...
+
+        # Redireciona para a página de resultados após o envio
+        return redirect(
+            url_for('homepage', idade_hoje=idade_hoje, valor_investido=valor_investido, poupar_mes=poupar_mes,
+                    idade_aposentar=idade_aposentar, renda_aposentar=renda_aposentar,
+                    tolerancia_risco=tolerancia_risco))
+
     return render_template("info3.html", form=form3)
+
 
