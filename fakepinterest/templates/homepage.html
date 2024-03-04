@@ -7,41 +7,51 @@
             Calculadora de investimentos
         {% endblock %}
     </title>
-    <style>
 
+    <style>
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
             display: flex;
             justify-content: center;
-            align-items: center;
-            height: 100vh;
+            align-items: center; /* Centraliza o conteúdo na página */
             background-color: #1657af;
+            color: #ffffff; /* Cor branca */
+            overflow-y: auto; /* Adiciona rolagem vertical quando necessário */
         }
+        .titu {text-align: center;
+        margin-top: 100px;}
+
         .container {
-            text-align: center;
+            text-align: left;
         }
         h1 {
-             color: #ffffff; /* Cor branca */
+            color: #ffffff; /* Cor branca */
+            margin-bottom: 40px;
         }
         .bold-label {
             font-weight: bold;
-            font-size: 18px;
-         }
-
+            font-size: 25px;
+            margin-bottom: 20px;
+        }
+        .bold-labelll {
+            font-weight: bold;
+            font-size: 15px;
+            margin-bottom: 25px;
+        }
+        .img {
+            margin-bottom: 60px; /* Adiciona uma margem abaixo da imagem */
+            text-align: center;
+            margin-top: 100px;
+        }
 
         .form-container {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
-            width: 700px; /* Largura fixa */
-            margin: 20px; /* Margem externa adicionada */
-            min-height: 300px;
+            width: 600px; /* Largura fixa do formulário */
+            margin: 0 auto; /* Centraliza o formulário na página */
         }
         .form-container div {
-            margin-bottom: 15px;
+            margin-bottom: 40px;
         }
         .form-container input[type="text"],
         .form-container input[type="email"],
@@ -66,22 +76,22 @@
             background-color: #0056b3;
         }
         .objetivos-container {
-             display: flex;
+            display: flex;
             flex-direction: column;
             align-items: flex-start;
             margin-felt: 0px;
-            }
-          .objetivos-container > div {
-             margin-right: 20px; /* Ajuste a margem conforme necessário */
-          }
-
+            font-size: 20px;
+        }
+        .objetivos-container > div {
+            margin-right: 20px; /* Ajuste a margem conforme necessário */
+        }
     </style>
 </head>
 {% block body %}
 <body>
     <div class="container">
-        <img class="logo" src="https://petropolisinvestimentos.com.br/wp-content/uploads/2023/09/logo-neg-simple.png.webp" alt="Logo">
-        <h1>Seja Bem Vindo!</h1>
+        <img class="img" src="https://petropolisinvestimentos.com.br/wp-content/uploads/2023/09/logo-neg-simple.png.webp" alt="Logo">
+        <h1 class="titu">Seja Bem Vindo!</h1>
         <div class="form-container">
             {% block formulario %}
             <form method="POST">
@@ -101,7 +111,7 @@
                 <div>
                     {{ form.indicou.label(class="bold-label") }}<br>
                     {{ form.indicou(class="objetivos-container") }}
-                    {{ form.outras_indicacoes(class="objetivos-container") }}
+                    {{ form.outras_indicacoes() }}
                 </div>
                 <div>
                     {{ form.submit(class="bold-label") }}

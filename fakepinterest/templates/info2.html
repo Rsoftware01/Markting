@@ -6,8 +6,7 @@
 
 {% block body %}
     <div class="container">
-        <img class="logo" src="https://petropolisinvestimentos.com.br/wp-content/uploads/2023/09/logo-neg-simple.png.webp" alt="Logo">
-        <h1 class="h1">Mapeamento de Sonhos</h1>
+        <h1 class="titu">Mapeamento de Sonhos</h1>
         <div class="form-container">
             {% block formulario %}
                 <form method="POST">
@@ -16,19 +15,19 @@
                         {{ form.objetivo_imediato.label(class="bold-label") }}
                         <br>
                         {{ form.objetivo_imediato(class="objetivos-container") }}
-                        {{ form.objetivo_imediato_outras(class="objetivos-container") }}
+                        {{ form.objetivo_imediato_outras() }}
                     </div>
                     <div>
                         {{ form.objetivo_3a5_anos.label(class="bold-label") }}
                         <br>
                         {{ form.objetivo_3a5_anos(class="objetivos-container") }}
-                        {{ form.objetivo_3a5_anos_outras(class="objetivos-container") }}
+                        {{ form.objetivo_3a5_anos_outras() }}
                     </div>
                     <div>
                         {{ form.objetivo_5a10_anos.label(class="bold-label") }}
                         <br>
                         {{ form.objetivo_5a10_anos(class="objetivos-container") }}
-                        {{ form.objetivo_5a10_anos_outras(class="objetivos-container") }}
+                        {{ form.objetivo_5a10_anos_outras() }}
                     </div>
                     <div>
                         {{ form.submit(class="bold-label") }}

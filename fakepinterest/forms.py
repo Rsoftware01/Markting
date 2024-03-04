@@ -44,10 +44,10 @@ class FormPagina2(FlaskForm):
     submit = SubmitField('Próxima Página')
 
 class FormPagina3(FlaskForm):
-    idade_hoje = IntegerField('Qual a sua idade hoje?', validators=[DataRequired()])
+    idade_hoje = FloatField('Qual a sua idade hoje?', validators=[DataRequired()])
     valor_investido = FloatField('Você já possui algum valor investido, qual?', validators=[DataRequired()])
     poupar_mes = FloatField('Quanto conseguiria poupar por mês?', validators=[DataRequired()])
-    idade_aposentar = IntegerField('Qual idade você pretende se aposentar?', validators=[DataRequired()])
+    idade_aposentar = FloatField('Qual idade você pretende se aposentar?', validators=[DataRequired()])
     renda_aposentar = FloatField('Qual renda você gostaria para a sua aposentadoria?', validators=[DataRequired()])
     tolerancia_risco = RadioField('Qual é o seu nível de tolerância ao risco quando se trata de investimentos?',
                                   choices=[('conservador', 'Conservador: Prefiro opções de investimento de baixo risco, mesmo que isso signifique retornos mais baixos. (IPCA+5%)'),

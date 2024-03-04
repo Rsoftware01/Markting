@@ -29,10 +29,10 @@ class Info(database.Model):
 
 class OutraInfo(database.Model):  # Renomeando para evitar conflito
     id = database.Column(database.Integer, primary_key=True)
-    idadehoje = database.Column(database.Integer, nullable=False)  # Corrigido para database.Integer
-    valorinvestido = database.Column(database.Float, nullable=False)  # Corrigido para database.Float
-    pouparmes = database.Column(database.Float, nullable=False)  # Corrigido para database.Float
-    idadeaposentar = database.Column(database.Integer, nullable=False)  # Corrigido para database.Integer
-    rendaaposentar = database.Column(database.Float, nullable=False)  # Corrigido para database.Float
+    idadehoje = database.Column(database.String, nullable=False)  # Corrigido para database.Integer
+    valorinvestido = database.Column(database.String, nullable=False)  # Corrigido para database.Float
+    pouparmes = database.Column(database.String, nullable=False)  # Corrigido para database.Float
+    idadeaposentar = database.Column(database.String, nullable=False)  # Corrigido para database.Integer
+    rendaaposentar = database.Column(database.String, nullable=False)  # Corrigido para database.Float
     risco = database.Column(database.String, nullable=False)  # Corrigido para database.Integer
     usuario_id = database.Column(database.Integer, database.ForeignKey('usuario.id'), nullable=False)  # Chave estrangeira

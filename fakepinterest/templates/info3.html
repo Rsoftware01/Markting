@@ -6,8 +6,7 @@
 
 {% block body %}
     <div class="container">
-        <img class="logo" src="https://petropolisinvestimentos.com.br/wp-content/uploads/2023/09/logo-neg-simple.png.webp" alt="Logo">
-        <h1 class="h1">Calculadora de Aposentadoria</h1>
+        <h1 class="titu">Calculadora de Aposentadoria</h1>
         <div class="form-container">
             {% block formulario %}
                 <form method="POST">
@@ -18,11 +17,11 @@
                     </div>
                     <div>
                         {{ form.valor_investido.label(class="bold-label") }}
-                        {{ form.valor_investido(class="objetivos-container") }}
+                        {{ form.valor_investido() }}
                     </div>
                     <div>
                         {{ form.poupar_mes.label(class="bold-label") }}
-                        {{ form.poupar_mes(class="objetivos-container") }}
+                        {{ form.poupar_mes() }}
                     </div>
                     <div>
                         {{ form.idade_aposentar.label(class="bold-label") }}
@@ -30,12 +29,12 @@
                     </div>
                     <div>
                         {{ form.renda_aposentar.label(class="bold-label") }}
-                        {{ form.renda_aposentar(class="objetivos-container") }}
+                        {{ form.renda_aposentar() }}
                     </div>
                     <div>
                         {{ form.tolerancia_risco.label(class="bold-label") }}
                         <br>
-                        {{ form.tolerancia_risco(class="objetivos-container") }}
+                        {{ form.tolerancia_risco(class="bold-labelll") }}
                     </div>
                     <div>
                         {{ form.submit(class="bold-label") }}
