@@ -7,7 +7,7 @@
             Calculadora de investimentos
         {% endblock %}
     </title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"> <!-- Desativa a aproximação automática da tela -->
+
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -36,14 +36,13 @@
             margin-bottom: 20px;
         }
         .bold-labelll {
-            font-weight: bold;
             font-size: 15px;
             margin-bottom: 25px;
         }
         .img {
-            margin-bottom: 60px; /* Adiciona uma margem abaixo da imagem */
-            text-align: center;
+            margin-bottom: 50px; /* Adiciona uma margem abaixo da imagem */
             margin-top: 100px;
+            margin-left: 50px;
         }
 
         .form-container {
@@ -53,6 +52,12 @@
         .form-container div {
             margin-bottom: 40px;
         }
+        .butt {
+            margin-left: 150px;
+            margin-right: auto;
+            width: 50%; /* Defina a largura desejada */
+           }
+
         .form-container input[type="text"],
         .form-container input[type="email"],
         .form-container input[type="tel"] {
@@ -114,12 +119,33 @@
                     {{ form.outras_indicacoes() }}
                 </div>
                 <div>
-                    {{ form.submit(class="bold-label") }}
+                    {{ form.submit(class="bold-label  butt") }}
                 </div>
             </form>
             {% endblock %}
         </div>
     </div>
 </body>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    function disableZoom() {
+        document.querySelector('meta[name="viewport"]').setAttribute('content', 'width=device-width, initial-scale=1.0, user-scalable=no');
+    }
+
+    function enableZoom() {
+        document.querySelector('meta[name="viewport"]').setAttribute('content', 'width=device-width, initial-scale=1.0, user-scalable=yes');
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var inputs = document.querySelectorAll('input, textarea');
+        inputs.forEach(function(input) {
+            input.addEventListener('blur', function() {
+                enableZoom();
+            });
+        });
+    });
+</script>
 {% endblock %}
 </html>

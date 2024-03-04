@@ -6,6 +6,7 @@
 
 {% block body %}
     <div class="container">
+        <img class="img" src="https://petropolisinvestimentos.com.br/wp-content/uploads/2023/09/logo-neg-simple.png.webp" alt="Logo">
         <h1 class="titu">Calculadora de Aposentadoria</h1>
         <div class="form-container">
             {% block formulario %}
@@ -37,7 +38,7 @@
                         {{ form.tolerancia_risco(class="bold-labelll") }}
                     </div>
                     <div>
-                        {{ form.submit(class="bold-label") }}
+                        {{ form.submit(class="bold-label butt") }}
                     </div>
                 </form>
             {% endblock %}
