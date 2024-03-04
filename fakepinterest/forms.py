@@ -1,6 +1,11 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, RadioField, IntegerField, FloatField
 from wtforms.validators import DataRequired, Email, Optional, ValidationError
+from fakepinterest.models import Usuario
+
+from flask_wtf import FlaskForm
+from wtforms import StringField, SubmitField, RadioField
+from wtforms.validators import DataRequired, Email, Optional
 
 class FormPagina1(FlaskForm):
     nome = StringField('Nome: ', validators=[DataRequired()])
@@ -33,16 +38,15 @@ class FormPagina2(FlaskForm):
                                     choices=[('casa_propria', 'Adquirir uma casa própria'),
                                              ('negocio', 'Investir em um negócio próprio'),
                                              ('educacao_filhos', 'Planejar a educação dos filhos'),
-                                             ('outras_5a10', 'Outras')],
-                                    validators=[Optional()])
+                                             ('outras_5a10', 'Outras')])
     objetivo_5a10_anos_outras = StringField('Por favor, especifique:', validators=[Optional()])
     submit = SubmitField('Próxima Página')
 
 class FormPagina3(FlaskForm):
-    idade_hoje = IntegerField('Qual a sua idade hoje?', validators=[DataRequired()])
+    idade_hoje = FloatField('Qual a sua idade hoje?', validators=[DataRequired()])
     valor_investido = FloatField('Você já possui algum valor investido, qual?', validators=[DataRequired()])
     poupar_mes = FloatField('Quanto conseguiria poupar por mês?', validators=[DataRequired()])
-    idade_aposentar = IntegerField('Qual idade você pretende se aposentar?', validators=[DataRequired()])
+    idade_aposentar = FloatField('Qual idade você pretende se aposentar?', validators=[DataRequired()])
     renda_aposentar = FloatField('Qual renda você gostaria para a sua aposentadoria?', validators=[DataRequired()])
     tolerancia_risco = RadioField('Qual é o seu nível de tolerância ao risco quando se trata de investimentos?',
                                   choices=[('conservador', 'Conservador: Prefiro opções de investimento de baixo risco, mesmo que isso signifique retornos mais baixos. (IPCA+5%)'),
