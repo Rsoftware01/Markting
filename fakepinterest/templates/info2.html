@@ -4,6 +4,130 @@
     Calculadora de investimentos
 {% endblock %}
 
+{% block style %}
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center; /* Centraliza o conteúdo na página */
+            background-color: #1657af;
+            color: #ffffff; /* Cor branca */
+        }
+        .titu {
+            text-align: center;
+            margin-top: 100px;
+            font-size: 50px;
+        }
+
+        .container {
+            text-align: left;
+        }
+        h1 {
+            color: #ffffff; /* Cor branca */
+            margin-bottom: 40px;
+        }
+        .bold-label {
+            font-weight: bold;
+            font-size: 40px;
+            margin-bottom: 20px;
+        }
+        .bold-labelll {
+            font-size: 40px;
+            margin-bottom: 25px;
+        }
+        .img {
+            width: 750px; /* largura desejada */
+            height: auto; /* mantém a proporção original da imagem */
+            margin-bottom: 50px; /* Adiciona uma margem abaixo da imagem */
+            margin-top: 100px;
+            margin-left: 28px;
+        }
+
+
+
+        .form-container {
+            width: 800px; /* Largura fixa do formulário */
+            height: 75vh; /* Altura igual à altura da tela */
+            margin: 0 auto; /* Centraliza o formulário na página */
+            display: flex; /* Torna o contêiner flexível */
+            flex-direction: column; /* Alinha os itens em coluna */
+            justify-content: center; /* Centraliza os itens verticalmente */
+        }
+        .form-container div {
+            margin-bottom: 40px;
+        }
+        .butt {
+            margin-left: 150px;
+            margin-right: auto;
+            width: 50%; /* Defina a largura desejada */
+            height: 50px;
+        }
+
+        .form-container input[type="text"],
+        .form-container input[type="email"],
+        .form-container input[type="tel"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 20px;
+        }
+        .form-container input[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .form-container input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+        .objetivos-container {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            margin-felt: 0px;
+            font-size: 30px;
+        }
+        .objetivos-container > div {
+            margin-right: 20px; /* Ajuste a margem conforme necessário */
+        }
+
+        /* Media query para telas menores */
+        @media only screen and (max-width: 768px) {
+            .container {
+                width: 90%; /* Reduz a largura para 90% da largura da tela */
+            }
+            .form-container {
+                width: 90%; /* Reduz a largura do formulário para 90% da largura da tela */
+            }
+        }
+
+       /* Remove o estilo padrão do navegador para o radio button */
+.objetivos-container input[type="radio"] {
+    -webkit-appearance: none; /* Remove a aparência padrão do WebKit (Chrome, Safari) */
+    -moz-appearance: none; /* Remove a aparência padrão do Firefox */
+    appearance: none; /* Remove a aparência padrão */
+    border: 2px solid #ffffff; /* Cor branca para o contorno */
+    width: 20px; /* Define a largura do radio button */
+    height: 20px; /* Define a altura do radio button */
+}
+
+/* Estilo para o fundo azul claro ao selecionar o radio button */
+.objetivos-container input[type="radio"]:checked {
+    background-color: #ADD8E6; /* Azul claro */
+}
+
+
+    </style>
+    {% endblock %}
+
 {% block body %}
     <div class="container">
         <img class="img" src="https://petropolisinvestimentos.com.br/wp-content/uploads/2023/09/logo-neg-simple.png.webp" alt="Logo">

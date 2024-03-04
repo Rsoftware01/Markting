@@ -38,8 +38,7 @@ class FormPagina2(FlaskForm):
                                     choices=[('casa_propria', 'Adquirir uma casa própria'),
                                              ('negocio', 'Investir em um negócio próprio'),
                                              ('educacao_filhos', 'Planejar a educação dos filhos'),
-                                             ('outras_5a10', 'Outras')],
-                                    validators=[DataRequired()])
+                                             ('outras_5a10', 'Outras')],)
     objetivo_5a10_anos_outras = StringField('Por favor, especifique:', validators=[Optional()])
     submit = SubmitField('Próxima Página')
 
@@ -53,7 +52,9 @@ class FormPagina3(FlaskForm):
                                   choices=[('conservador', 'Conservador: Prefiro opções de investimento de baixo risco, mesmo que isso signifique retornos mais baixos. (IPCA+5%)'),
                                            ('moderado', 'Moderado: Estou disposto(a) a assumir algum risco em busca de retornos moderados. (IPCA+7%)'),
                                            ('agressivo', 'Agressivo: Estou disposto(a) a assumir riscos significativos em busca de retornos mais altos. (IPCA+10%)')],
-                                  validators=[DataRequired()])
+                                  validators=[DataRequired()],)
+
+
     submit = SubmitField('Enviar')
 
 
