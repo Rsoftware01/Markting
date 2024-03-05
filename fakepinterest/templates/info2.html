@@ -42,7 +42,7 @@
             width: 750px; /* largura desejada */
             height: auto; /* mantém a proporção original da imagem */
             margin-bottom: 50px; /* Adiciona uma margem abaixo da imagem */
-            margin-top: 100px;
+            margin-top: 400px;
             margin-left: 28px;
         }
 
@@ -60,11 +60,12 @@
             margin-bottom: 40px;
         }
         .butt {
-            margin-left: 150px;
-            margin-right: auto;
-            width: 50%; /* Defina a largura desejada */
+             margin-left: 150px;
+             margin-right: auto;
+             width: 50%; /* Defina a largura desejada */
             height: 50px;
-        }
+            font-size: 30px; /* Tamanho do texto */
+          }
 
         .form-container input[type="text"],
         .form-container input[type="email"],
@@ -83,7 +84,7 @@
             padding: 10px 20px;
             border-radius: 5px;
             cursor: pointer;
-            font-size: 16px;
+
         }
         .form-container input[type="submit"]:hover {
             background-color: #0056b3;
@@ -130,11 +131,12 @@
 
 {% block body %}
     <div class="container">
-        <img class="img" src="https://petropolisinvestimentos.com.br/wp-content/uploads/2023/09/logo-neg-simple.png.webp" alt="Logo">
-        <h1 class="titu">Mapeamento de Sonhos</h1>
+
         <div class="form-container">
             {% block formulario %}
                 <form method="POST">
+                    <img class="img" src="https://petropolisinvestimentos.com.br/wp-content/uploads/2023/09/logo-neg-simple.png.webp" alt="Logo">
+                    <h1 class="titu">Mapeamento de Sonhos</h1>
                     {{ form.csrf_token }}
                     <div>
                         {{ form.objetivo_imediato.label(class="bold-label") }}
