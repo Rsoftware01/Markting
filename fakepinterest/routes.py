@@ -52,27 +52,14 @@ def info3():
                           usuario_id=1)  # Insira o ID do usuário adequado aqui
         database.session.add(info3)
         database.session.commit()
-
-        # Realiza os cálculos com base nos dados fornecidos pelo usuário
-        idade_hoje = form3.idade_hoje.data
-        valor_investido = form3.valor_investido.data
-        poupar_mes = form3.poupar_mes.data
-        idade_aposentar = form3.idade_aposentar.data
-        renda_aposentar = form3.renda_aposentar.data
-        tolerancia_risco = form3.tolerancia_risco.data
-
-        # Aqui você pode realizar os cálculos com base nos dados fornecidos pelo usuário
-        # Por exemplo:
-        anos_para_aposentar = idade_aposentar - idade_hoje
-        valor_total_poupanca = valor_investido + (poupar_mes * 12 * anos_para_aposentar)
-        # E assim por diante...
-
         # Redireciona para a página de resultados após o envio
         return redirect(
-            url_for('homepage', idade_hoje=idade_hoje, valor_investido=valor_investido, poupar_mes=poupar_mes,
-                    idade_aposentar=idade_aposentar, renda_aposentar=renda_aposentar,
-                    tolerancia_risco=tolerancia_risco))
+            url_for('resultados'))
 
     return render_template("info3.html", form=form3)
 
 
+@app.route("/resultados", methods=["GET", "POST"])
+def resultados():
+    mensagem_de_resultado = "Seus resultados estão aqui!"
+    return render_template("resultados.html", resultado=mensagem_de_resultado)
