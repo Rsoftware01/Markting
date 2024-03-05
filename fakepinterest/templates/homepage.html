@@ -124,13 +124,16 @@
 {% block body %}
 <body>
     <div class="container">
-
         <div class="form-container">
-            {% block formulario %}
             <form method="POST">
                 <img class="img" src="https://petropolisinvestimentos.com.br/wp-content/uploads/2023/09/logo-neg-simple.png.webp" alt="Logo">
                 <h1 class="titu">Seja Bem Vindo!</h1>
                 {{ form.csrf_token }}
+                {% for message in get_flashed_messages() %}
+                    <div class="flash-message">
+                        {{ message }}
+                    </div>
+                {% endfor %}
                 <div>
                     {{ form.nome.label(class="bold-label") }}<br>
                     {{ form.nome() }}
@@ -150,10 +153,9 @@
                     {{ form.outras_indicacoes() }}
                 </div>
                 <div>
-                    {{ form.submit(class="bold-label  butt") }}
+                    {{ form.submit(class="bold-label butt") }}
                 </div>
             </form>
-            {% endblock %}
         </div>
     </div>
 </body>

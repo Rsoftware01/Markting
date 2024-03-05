@@ -1,6 +1,6 @@
 # criar as rotas do site, os links
 
-from flask import render_template, redirect, url_for, request
+from flask import render_template, redirect, url_for, request, flash
 from fakepinterest import app, database
 from fakepinterest.models import Usuario, Info, OutraInfo
 from flask_login import login_required
@@ -10,15 +10,22 @@ from fakepinterest.forms import FormPagina1, FormPagina2, FormPagina3
 def homepage():
     formlogin = FormPagina1()
     if formlogin.validate_on_submit():
-        usuarioo = Usuario(nome=formlogin.nome.data,
-                          telefone=formlogin.telefone.data,
-                          email=formlogin.email.data,
-                           indicou=formlogin.indicou.data,
-                           outras_indicacoes1=formlogin.indicou.data,
-                           outras_indicacoes=formlogin.outras_indicacoes.data)
-        database.session.add(usuarioo)
-        database.session.commit()
-        return redirect(url_for('info2'))  # Redireciona para a próxima página após o envio
+        # Verifica se o e-mail já está cadastrado
+        usuario_existente = Usuario.query.filter_by(email=formlogin.email.data).first()
+        if usuario_existente:
+            flash('E-mail já cadastrado. Por favor, use um e-mail diferente.')
+            return redirect(url_for('homepage'))
+        else:
+            # Se o e-mail não estiver cadastrado, prossegue com o cadastro
+            usuarioo = Usuario(nome=formlogin.nome.data,
+                              telefone=formlogin.telefone.data,
+                              email=formlogin.email.data,
+                              indicou=formlogin.indicou.data,
+                              outras_indicacoes1=formlogin.indicou.data,
+                              outras_indicacoes=formlogin.outras_indicacoes.data)
+            database.session.add(usuarioo)
+            database.session.commit()
+            return redirect(url_for('info2'))  # Redireciona para a próxima página após o envio
     return render_template("homepage.html", form=formlogin)
 
 @app.route("/info2", methods=["GET", "POST"])
