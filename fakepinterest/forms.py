@@ -11,12 +11,15 @@ class FormPagina1(FlaskForm):
     nome = StringField('Nome: ', validators=[DataRequired()])
     telefone = StringField('Telefone para envio dos Resultados: ', validators=[DataRequired()])
     email = StringField('E-mail', validators=[DataRequired(), Email()])
-    indicou = RadioField('Quem te indicou:',
+    indicou = RadioField('Como nos conheceu:',
                          choices=[('Assessor(a)', 'Assessor(a)'),
-                                  ('Redes sociais', 'Redes sociais'),
-                                  ('Outras', 'Outras')],
+                                  ('Indicação', 'Indicação'),
+                                  ('Redes_sociais', 'Redes sociais'),
+                                  ('Pesquisa_Google', 'Pesquisa no Google')],
                          validators=[DataRequired()])
-    outras_indicacoes = StringField('Outras indicações:', validators=[Optional()])
+    outras_indicacoes1 = StringField('Se foi através dos nossos assessores, escreva o nome por favor:',
+                                    validators=[Optional()])
+    outras_indicacoes = StringField(validators=[Optional()])
     submit = SubmitField('Próxima Página')
 
 class FormPagina2(FlaskForm):

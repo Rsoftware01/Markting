@@ -41,6 +41,10 @@
             font-size: 40px;
             margin-bottom: 25px;
         }
+        .bold-lab {
+            font-size: 20px;
+
+        }
         .img {
             width: 750px; /* largura desejada */
             height: auto; /* mantém a proporção original da imagem */
@@ -139,6 +143,7 @@
                 <div>
                     {{ form.indicou.label(class="bold-label") }}<br>
                     {{ form.indicou(class="objetivos-container") }}
+                    {{ form.outras_indicacoes1.label(class="bold-lab") }}
                     {{ form.outras_indicacoes() }}
                 </div>
                 <div>

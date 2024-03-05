@@ -14,6 +14,7 @@ def homepage():
                           telefone=formlogin.telefone.data,
                           email=formlogin.email.data,
                            indicou=formlogin.indicou.data,
+                           outras_indicacoes1=formlogin.indicou.data,
                            outras_indicacoes=formlogin.outras_indicacoes.data)
         database.session.add(usuarioo)
         database.session.commit()

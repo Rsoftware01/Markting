@@ -14,6 +14,7 @@ class Usuario(database.Model, UserMixin):
     telefone = database.Column(database.String, nullable=False)
     indicou = database.Column(database.String, nullable=False)
     outras_indicacoes = database.Column(database.String, nullable=False)
+    outras_indicacoes1 = database.Column(database.String, nullable=False)
     infos = database.relationship("Info", backref="usuario", lazy=True)  # Relacionamento com a classe Info
     outras_infos = database.relationship("OutraInfo", backref="usuario", lazy=True)  # Relacionamento com a classe OutraInfo
 
