@@ -52,9 +52,9 @@ class FormPagina3(FlaskForm):
     idade_aposentar = FloatField('Qual idade você pretende se aposentar?', validators=[DataRequired()])
     renda_aposentar = FloatField('Qual renda você gostaria para a sua aposentadoria?', validators=[DataRequired()])
     tolerancia_risco = RadioField('Qual é o seu nível de tolerância ao risco quando se trata de investimentos?',
-                                  choices=[('conservador', 'Conservador: Prefiro opções de investimento de baixo risco, mesmo que isso signifique retornos mais baixos. (IPCA+5%)'),
-                                           ('moderado', 'Moderado: Estou disposto(a) a assumir algum risco em busca de retornos moderados. (IPCA+7%)'),
-                                           ('agressivo', 'Agressivo: Estou disposto(a) a assumir riscos significativos em busca de retornos mais altos. (IPCA+10%)')],
+                                  choices=[('conservador', 'Conservador: Prefiro opções de investimento de baixo risco, mesmo que isso signifique retornos mais baixos - (IPCA+5%).'),
+                                           ('moderado', 'Moderado: Estou disposto(a) a assumir algum risco em busca de retornos moderados - (IPCA+7%).'),
+                                           ('agressivo', 'Agressivo: Estou disposto(a) a assumir riscos significativos em busca de retornos mais altos - (IPCA+10%).')],
                                   validators=[DataRequired()])
 
 

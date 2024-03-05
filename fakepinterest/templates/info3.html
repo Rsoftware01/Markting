@@ -114,25 +114,31 @@
             }
         }
 
-        /* Remove o estilo padrão do navegador para o radio button */
-        .objetivos-container input[type="radio"] {
-        -webkit-appearance: none; /* Remove a aparência padrão do WebKit (Chrome, Safari) */
-        -moz-appearance: none; /* Remove a aparência padrão do Firefox */
-        appearance: none; /* Remove a aparência padrão */
-            border: 2px solid #ffffff; /* Cor branca para o contorno */
-             border-radius: 50%; /* Borda arredondada para criar um quadrado */
-            width: 20px; /* Define a largura do radio button */
-            height: 20px; /* Define a altura do radio button */
-        }
+      /* Remove o estilo padrão do navegador para o radio button */
+.choices input[type="radio"] {
+    -webkit-appearance: none; /* Remove a aparência padrão do WebKit (Chrome, Safari) */
+    -moz-appearance: none; /* Remove a aparência padrão do Firefox */
+    appearance: none; /* Remove a aparência padrão */
+    border: 3px solid #ffffff; /* Cor branca para o contorno */
+    width: 25px; /* Define a largura do radio button */
+    height: 25px; /* Define a altura do radio button */
+    border-radius: 3px; /* Adiciona bordas arredondadas */
+    margin-bottom: 12px;
+    margin-top: 13px;
+    vertical-align: middle; /* Alinha verticalmente com o texto */
+}
 
-        /* Estilo para o fundo azul claro ao selecionar o radio button */
-        .objetivos-container input[type="radio"]:checked {
-         background-color: #ffffff; /* Azul claro */
-        }
-        .choices label {
-            margin-bottom: 50px; /* Adicione uma margem na parte inferior de cada opção */
+/* Estilo para o fundo azul claro ao selecionar o radio button */
+.choices input[type="radio"]:checked {
+    background-color: #ADD8E6; /* Azul claro */
+}
 
-        }
+/* Estilo para o contêiner de escolha */
+.choice-container {
+    display: inline-block; /* Permite que os contêineres de escolha fiquem na mesma linha */
+}
+
+
     </style>
     {% endblock %}
 
