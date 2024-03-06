@@ -7,6 +7,7 @@ from flask_login import UserMixin
 def load_usuario(id_usuario):
     return Usuario.query.get (int(id_usuario))
 
+
 class Usuario(database.Model, UserMixin):
     id = database.Column(database.Integer, primary_key=True)
     nome = database.Column(database.String, nullable=False)
