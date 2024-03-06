@@ -95,9 +95,6 @@
             cursor: pointer;
 
         }
-        html {
-            touch-action: manipulation;
-        }
 
         .form-container input[type="submit"]:hover {
             background-color: #0056b3;
@@ -144,7 +141,7 @@
                 </div>
                 <div>
                     {{ form.telefone.label(class="bold-label") }}<br>
-                    {{ form.telefone() }}
+                    {{ form.telefone(id="telefone") }}
                 </div>
                 <div>
                     {{ form.email.label(class="bold-label") }}<br>
@@ -166,24 +163,15 @@
 {% endblock %}
 
 {% block scripts %}
-<script>
-    function disableZoom() {
-        document.querySelector('meta[name="viewport"]').setAttribute('content', 'width=device-width, initial-scale=1.0, user-scalable=no');
-    }
 
-    function enableZoom() {
-        document.querySelector('meta[name="viewport"]').setAttribute('content', 'width=device-width, initial-scale=1.0, user-scalable=yes');
-    }
-
-    document.addEventListener('DOMContentLoaded', function() {
-        var inputs = document.querySelectorAll('input, textarea');
-        inputs.forEach(function(input) {
-            input.addEventListener('blur', function() {
-                enableZoom();
-            });
-        });
-    });
-</script>
 {% endblock %}
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, user-scalable=yes">
+<script>
+    document.getElementById("telefone").oninput = function () {
+        var input = this.value.replace(/\D/g, ''); // Remove todos os caracteres que não são dígitos
+        var formattedInput = '(' + input.substring(0, 2) + ') ' + input.substring(2); // Adiciona parênteses e espaço
+        this.value = formattedInput.substring(0, 14); // Limita o número de caracteres
+    };
+</script>
 </html>
+
+
