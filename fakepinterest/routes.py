@@ -6,6 +6,7 @@ from fakepinterest.models import Usuario, Info, OutraInfo
 from flask_login import login_required
 from fakepinterest.forms import FormPagina1, FormPagina2, FormPagina3
 from math import pow
+import locale
 
 
 @app.route("/", methods=["GET", "POST"])
@@ -82,35 +83,52 @@ def resultados():
     # Calculando as métricas com base nos dados capturados
     Tempo_contribuicao = int(idadeaposentar - idadehoje)
     Tempo_beneficio = int(expectativavida - idadeaposentar)
+    idadehoje = int(idadehoje)
+    idadeaposentar = int(idadeaposentar)
 
     # Dados fictícios para demonstração
     taxa = 0.05  # 5%
     inflacao = 0.03  # 3%
 
     Renda_corrigida_inflacao = rendaaposentar * pow(1 + inflacao, Tempo_contribuicao)
-    Renda_anual_corrigida_inflacao = "R$ {:,.2f}".format(Renda_corrigida_inflacao)
 
-    Valor_necessario_inicio_aposentadoria = valorinvestido + Renda_corrigida_inflacao
+    Renda_anual_corrigida_inflacao = abs(Renda_corrigida_inflacao * 12)
+
+    Valor_necessario_inicio_aposentadoria = Renda_anual_corrigida_inflacao * ((1 - pow(1 + taxa, -Tempo_beneficio)) / taxa)
 
     Valor_ativos_corrigidos_ate_aposentadoria = valorinvestido * pow(1 + taxa, Tempo_contribuicao)
 
     volume_precisa_acumular = abs(Valor_necessario_inicio_aposentadoria - Valor_ativos_corrigidos_ate_aposentadoria)
 
-    Valor_que_deve_juntar_anualmente = abs(volume_precisa_acumular / Tempo_contribuicao)
+    Valor_que_deve_juntar_anualmente = (-volume_precisa_acumular * taxa) / (1 - pow(1 + taxa, Tempo_contribuicao))
 
-    Valor_que_deve_juntar_mensalmente = abs(Valor_que_deve_juntar_anualmente / 12)
+    Valor_que_deve_juntar_mensalmente = volume_precisa_acumular / (
+                ((pow(taxa + 1, 1 / 12)) ** (Tempo_contribuicao * 12) - 1) / (taxa / 12))
 
     # Formatando os valores para exibição
-    Renda_anual_corrigida_inflacao = "R$ {:,.2f}".format(Renda_corrigida_inflacao)
-    Valor_necessario_inicio_aposentadoria = "R$ {:,.2f}".format(Valor_necessario_inicio_aposentadoria)
-    Valor_ativos_corrigidos_ate_aposentadoria = "R$ {:,.2f}".format(Valor_ativos_corrigidos_ate_aposentadoria)
-    volume_precisa_acumular = "R$ {:,.2f}".format(volume_precisa_acumular)
-    Valor_que_deve_juntar_anualmente = "R$ {:,.2f}".format(Valor_que_deve_juntar_anualmente)
-    Valor_que_deve_juntar_mensalmente = "R$ {:,.2f}".format(Valor_que_deve_juntar_mensalmente)
+
+
+    # Define o local padrão para formatação de números
+    locale.setlocale(locale.LC_ALL, '')
+
+    # Formata os números com a configuração de local
+    valoraposentarr = locale.currency(valorinvestido, grouping=True)
+    rendaaposentarr = locale.currency(rendaaposentar, grouping=True)
+    Renda_anual_corrigida_inflacao = locale.currency(Renda_anual_corrigida_inflacao, grouping=True)
+    Valor_necessario_inicio_aposentadoria = locale.currency(Valor_necessario_inicio_aposentadoria, grouping=True)
+    Valor_ativos_corrigidos_ate_aposentadoria = locale.currency(Valor_ativos_corrigidos_ate_aposentadoria,
+                                                                grouping=True)
+    volume_precisa_acumular = locale.currency(volume_precisa_acumular, grouping=True)
+    Valor_que_deve_juntar_anualmente = locale.currency(Valor_que_deve_juntar_anualmente, grouping=True)
+    Valor_que_deve_juntar_mensalmente = locale.currency(Valor_que_deve_juntar_mensalmente, grouping=True)
 
     return render_template("resultados.html", Tempo_contribuicao=Tempo_contribuicao,
+                           idadehojee=idadehoje,
+                           idadeaposentarr=idadeaposentar,
+                           rendaaposentarrr=rendaaposentarr,
                            Tempo_beneficio=Tempo_beneficio,
                            Renda_anual_corrigida_inflacao=Renda_anual_corrigida_inflacao,
+                           valoraposentarrr=valoraposentarr,
                            Valor_necessario_inicio_aposentadoria=Valor_necessario_inicio_aposentadoria,
                            Valor_ativos_corrigidos_ate_aposentadoria=Valor_ativos_corrigidos_ate_aposentadoria,
                            volume_precisa_acumular=volume_precisa_acumular,

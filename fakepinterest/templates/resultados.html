@@ -6,9 +6,8 @@
 
 {% block style %}
     <style>
-        body {
+         body {
             font-family: Arial, sans-serif;
-            margin: 0;
             padding: 0;
             display: flex;
             justify-content: center;
@@ -16,26 +15,146 @@
             background-color: #0d2230;
             color: #ffffff; /* Cor branca */
         }
+        .titu {
+            text-align: center;
+            margin-top: 100px;
+            font-size: 42px;
+        }
 
         .container {
-            text-align: center; /* Alinha o texto no centro horizontal */
+            text-align: left;
+        }
+        h1 {
+            color: #ffffff; /* Cor branca */
+            margin-bottom: 40px;
         }
 
-        p {
-            font-size: 2em; /* Tamanho do texto maior */
+
+        .img {
+            width: 750px; /* largura desejada */
+            height: auto; /* mantém a proporção original da imagem */
+            margin-bottom: 50px; /* Adiciona uma margem abaixo da imagem */
+            margin-top: 100px;
+            margin-left: 28px;;
         }
+
+        .form-container {
+            width: 800px; /* Largura fixa do formulário */
+            height: 100vh; /* Altura igual à altura da tela */
+            margin: 0 auto; /* Centraliza o formulário na página */
+            display: flex; /* Torna o contêiner flexível */
+            flex-direction: column; /* Alinha os itens em coluna */
+            justify-content: center; /* Centraliza os itens verticalmente */
+        }
+        .form-container div {
+            margin-bottom: 40px;
+        }
+        ul {
+            list-style: none; /* Remove todos os marcadores */
+        }
+        .butt {
+             margin-left: 150px;
+             margin-right: auto;
+             width: 50%; /* Defina a largura desejada */
+            height: 50px;
+            font-size: 30px; /* Tamanho do texto */
+          }
+
+        .objetivos-container {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            margin-felt: 0px;
+            font-size: 30px;
+        }
+
+
+
+        table {
+            width: 100%; /* Define a largura da tabela */
+            margin: 20px auto; /* Centraliza a tabela na página */
+            border-collapse: collapse; /* Combina as bordas das células */
+            text-align: left
+
+        }
+
+        th, td {
+            padding: 10px; /* Espaçamento interno das células */
+            border: 1px solid #ffffff; /* Borda das células */
+            font-size: 25px;
+        }
+
+        th {
+            background-color: #0d2230; /* Cor de fundo do cabeçalho da tabela */
+        }
+
+        td {
+            background-color: #224466; /* Cor de fundo das células de dados */
+            color: #ffffff; /* Cor do texto das células de dados */
+        }
+        .frase-azul {
+        font-size: 30px;
+
+        }
+         .frase-a {
+
+        font-size: 20px;
+
+        }
+
     </style>
 {% endblock %}
 
 {% block body %}
+
     <div class="container">
-        <p>Tempo de Contribuição: {{ Tempo_contribuicao }}</p>
-        <p>Tempo de Benefício: {{ Tempo_beneficio }}</p>
-        <p>Renda Anual Corrigida pela Inflação: {{ Renda_anual_corrigida_inflacao }}</p>
-        <p>Valor Necessário para Início da Aposentadoria: {{ Valor_necessario_inicio_aposentadoria }}</p>
-        <p>Valor dos Ativos Corrigidos até a Aposentadoria: {{ Valor_ativos_corrigidos_ate_aposentadoria }}</p>
-        <p>Volume Precisa Acumular: {{ volume_precisa_acumular }}</p>
-        <p>Valor que Deve Juntar Anualmente: {{ Valor_que_deve_juntar_anualmente }}</p>
-        <p>Valor que Deve Juntar Mensalmente: {{ Valor_que_deve_juntar_mensalmente }}</p>
-    </div>
+
+        <div class="form-container">
+            {% block formulario %}
+        <form method="POST">
+        <img class="img" src="https://petropolisinvestimentos.com.br/wp-content/uploads/2023/09/logo-neg-simple.png.webp" alt="Logo">
+        <h1 class="titu">Planejamento de aposentadoria</h1>
+        <table>
+            <tr>
+                <th>Informações</th>
+                <th>Valores</th>
+            </tr>
+            <tr>
+                <td>Idade:</td>
+                <td>{{ idadehojee }}</td>
+            </tr>
+            <tr>
+                <td>Tempo de contribuição:</td>
+                <td>{{ Tempo_contribuicao }}</td>
+            </tr>
+            <tr>
+                <td>Tempo de benefício:</td>
+                <td>{{ Tempo_beneficio }}</td>
+            </tr>
+            <tr>
+                <td>Valor total invetido atualmente:</td>
+                <td>{{ valoraposentarrr }}</td>
+            </tr>
+            <tr>
+                <td>Valor necessário no início da aposentadoria:</td>
+                <td>{{ volume_precisa_acumular }}</td>
+            </tr>
+            <tr>
+                <td>Valor que deve investir anualmente:</td>
+                <td>{{ Valor_que_deve_juntar_anualmente }}</td>
+            </tr>
+            <tr>
+                <td>Valor que deve investir Mensalmente:</td>
+                <td>{{ Valor_que_deve_juntar_mensalmente }}</td>
+            </tr>
+
+
+        </table>
+              <p class="frase-a">Esse resultado é gerado com base no preenchimento do seu perfil de risco: Conservador, Moderdo ou Agressivo.</p>
+
+            <p class="frase-azul">Aposentando-se aos {{ idadeaposentarr }} anos de idade, você terá acumulado {{ volume_precisa_acumular }}, suficientes para uma renda mensal de {{ rendaaposentarrr }}.</p>
+        </div>
 {% endblock %}
+ </div>
+{% endblock %}
+
