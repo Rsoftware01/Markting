@@ -134,5 +134,3 @@ def resultados():
                            volume_precisa_acumular=volume_precisa_acumular,
                            Valor_que_deve_juntar_anualmente=Valor_que_deve_juntar_anualmente,
                            Valor_que_deve_juntar_mensalmente=Valor_que_deve_juntar_mensalmente)
-
-
