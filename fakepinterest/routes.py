@@ -6,7 +6,8 @@ from fakepinterest.models import Usuario, Info, OutraInfo
 from flask_login import login_required
 from fakepinterest.forms import FormPagina1, FormPagina2, FormPagina3
 from math import pow
-import locale
+from babel.numbers import format_currency
+
 
 
 @app.route("/", methods=["GET", "POST"])
@@ -69,6 +70,8 @@ def info3():
 
     return render_template("info3.html", form=form3)
 
+
+
 @app.route("/resultados", methods=["GET", "POST"])
 def resultados():
     ultima_info = OutraInfo.query.order_by(OutraInfo.id.desc()).first()
@@ -105,24 +108,18 @@ def resultados():
     Valor_que_deve_juntar_mensalmente = volume_precisa_acumular / (
                 ((pow(taxa + 1, 1 / 12)) ** (Tempo_contribuicao * 12) - 1) / (taxa / 12))
 
-    # Formatando os valores para exibição
+    # Formata os valores para exibição no formato de moeda brasileira
+    valoraposentarr = format_currency(valorinvestido, 'BRL', locale='pt_BR')
+    rendaaposentarr = format_currency(rendaaposentar, 'BRL', locale='pt_BR')
+    Renda_anual_corrigida_inflacao = format_currency(Renda_anual_corrigida_inflacao, 'BRL', locale='pt_BR')
+    Valor_necessario_inicio_aposentadoria = format_currency(Valor_necessario_inicio_aposentadoria, 'BRL', locale='pt_BR')
+    Valor_ativos_corrigidos_ate_aposentadoria = format_currency(Valor_ativos_corrigidos_ate_aposentadoria, 'BRL', locale='pt_BR')
+    volume_precisa_acumular = format_currency(volume_precisa_acumular, 'BRL', locale='pt_BR')
+    Valor_que_deve_juntar_anualmente = format_currency(Valor_que_deve_juntar_anualmente, 'BRL', locale='pt_BR')
+    Valor_que_deve_juntar_mensalmente = format_currency(Valor_que_deve_juntar_mensalmente, 'BRL', locale='pt_BR')
 
-
-    # Define o local padrão para formatação de números
-    locale.setlocale(locale.LC_ALL, '')
-
-    # Formata os números com a configuração de local
-    valoraposentarr = locale.currency(valorinvestido, grouping=True)
-    rendaaposentarr = locale.currency(rendaaposentar, grouping=True)
-    Renda_anual_corrigida_inflacao = locale.currency(Renda_anual_corrigida_inflacao, grouping=True)
-    Valor_necessario_inicio_aposentadoria = locale.currency(Valor_necessario_inicio_aposentadoria, grouping=True)
-    Valor_ativos_corrigidos_ate_aposentadoria = locale.currency(Valor_ativos_corrigidos_ate_aposentadoria,
-                                                                grouping=True)
-    volume_precisa_acumular = locale.currency(volume_precisa_acumular, grouping=True)
-    Valor_que_deve_juntar_anualmente = locale.currency(Valor_que_deve_juntar_anualmente, grouping=True)
-    Valor_que_deve_juntar_mensalmente = locale.currency(Valor_que_deve_juntar_mensalmente, grouping=True)
-
-    return render_template("resultados.html", Tempo_contribuicao=Tempo_contribuicao,
+    return render_template("resultados.html",
+                           Tempo_contribuicao=Tempo_contribuicao,
                            idadehojee=idadehoje,
                            idadeaposentarr=idadeaposentar,
                            rendaaposentarrr=rendaaposentarr,
