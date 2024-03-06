@@ -36,5 +36,6 @@ class OutraInfo(database.Model):  # Renomeando para evitar conflito
     pouparmes = database.Column(database.String, nullable=False)  # Corrigido para database.Float
     idadeaposentar = database.Column(database.String, nullable=False)  # Corrigido para database.Integer
     rendaaposentar = database.Column(database.String, nullable=False)  # Corrigido para database.Float
+    expectativavida = database.Column(database.String, nullable=False)  # Corrigido para database.Integer
     risco = database.Column(database.String, nullable=False)  # Corrigido para database.Integer
     usuario_id = database.Column(database.Integer, database.ForeignKey('usuario.id'), nullable=False)  # Chave estrangeira

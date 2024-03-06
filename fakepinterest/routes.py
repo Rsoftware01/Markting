@@ -5,6 +5,8 @@ from fakepinterest import app, database
 from fakepinterest.models import Usuario, Info, OutraInfo
 from flask_login import login_required
 from fakepinterest.forms import FormPagina1, FormPagina2, FormPagina3
+from math import pow
+
 
 @app.route("/", methods=["GET", "POST"])
 def homepage():
@@ -55,6 +57,7 @@ def info3():
                           pouparmes=form3.poupar_mes.data,
                           idadeaposentar=form3.idade_aposentar.data,
                           rendaaposentar=form3.renda_aposentar.data,
+                          expectativavida=form3.expectativavida.data,
                           risco=form3.tolerancia_risco.data,
                           usuario_id=1)  # Insira o ID do usuário adequado aqui
         database.session.add(info3)
@@ -65,8 +68,53 @@ def info3():
 
     return render_template("info3.html", form=form3)
 
-
 @app.route("/resultados", methods=["GET", "POST"])
 def resultados():
-    mensagem_de_resultado = "Seus resultados estão aqui!"
-    return render_template("resultados.html", resultado=mensagem_de_resultado)
+    ultima_info = OutraInfo.query.order_by(OutraInfo.id.desc()).first()
+
+    # Obtendo as informações do objeto e convertendo para os tipos corretos
+    idadehoje = float(ultima_info.idadehoje)
+    idadeaposentar = float(ultima_info.idadeaposentar)
+    rendaaposentar = float(ultima_info.rendaaposentar)
+    valorinvestido = float(ultima_info.valorinvestido)
+    expectativavida = float(ultima_info.expectativavida)
+
+    # Calculando as métricas com base nos dados capturados
+    Tempo_contribuicao = int(idadeaposentar - idadehoje)
+    Tempo_beneficio = int(expectativavida - idadeaposentar)
+
+    # Dados fictícios para demonstração
+    taxa = 0.05  # 5%
+    inflacao = 0.03  # 3%
+
+    Renda_corrigida_inflacao = rendaaposentar * pow(1 + inflacao, Tempo_contribuicao)
+    Renda_anual_corrigida_inflacao = "R$ {:,.2f}".format(Renda_corrigida_inflacao)
+
+    Valor_necessario_inicio_aposentadoria = valorinvestido + Renda_corrigida_inflacao
+
+    Valor_ativos_corrigidos_ate_aposentadoria = valorinvestido * pow(1 + taxa, Tempo_contribuicao)
+
+    volume_precisa_acumular = abs(Valor_necessario_inicio_aposentadoria - Valor_ativos_corrigidos_ate_aposentadoria)
+
+    Valor_que_deve_juntar_anualmente = abs(volume_precisa_acumular / Tempo_contribuicao)
+
+    Valor_que_deve_juntar_mensalmente = abs(Valor_que_deve_juntar_anualmente / 12)
+
+    # Formatando os valores para exibição
+    Renda_anual_corrigida_inflacao = "R$ {:,.2f}".format(Renda_corrigida_inflacao)
+    Valor_necessario_inicio_aposentadoria = "R$ {:,.2f}".format(Valor_necessario_inicio_aposentadoria)
+    Valor_ativos_corrigidos_ate_aposentadoria = "R$ {:,.2f}".format(Valor_ativos_corrigidos_ate_aposentadoria)
+    volume_precisa_acumular = "R$ {:,.2f}".format(volume_precisa_acumular)
+    Valor_que_deve_juntar_anualmente = "R$ {:,.2f}".format(Valor_que_deve_juntar_anualmente)
+    Valor_que_deve_juntar_mensalmente = "R$ {:,.2f}".format(Valor_que_deve_juntar_mensalmente)
+
+    return render_template("resultados.html", Tempo_contribuicao=Tempo_contribuicao,
+                           Tempo_beneficio=Tempo_beneficio,
+                           Renda_anual_corrigida_inflacao=Renda_anual_corrigida_inflacao,
+                           Valor_necessario_inicio_aposentadoria=Valor_necessario_inicio_aposentadoria,
+                           Valor_ativos_corrigidos_ate_aposentadoria=Valor_ativos_corrigidos_ate_aposentadoria,
+                           volume_precisa_acumular=volume_precisa_acumular,
+                           Valor_que_deve_juntar_anualmente=Valor_que_deve_juntar_anualmente,
+                           Valor_que_deve_juntar_mensalmente=Valor_que_deve_juntar_mensalmente)
+
+

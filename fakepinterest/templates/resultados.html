@@ -29,6 +29,13 @@
 
 {% block body %}
     <div class="container">
-        <p>{{ resultado }}</p>
+        <p>Tempo de Contribuição: {{ Tempo_contribuicao }}</p>
+        <p>Tempo de Benefício: {{ Tempo_beneficio }}</p>
+        <p>Renda Anual Corrigida pela Inflação: {{ Renda_anual_corrigida_inflacao }}</p>
+        <p>Valor Necessário para Início da Aposentadoria: {{ Valor_necessario_inicio_aposentadoria }}</p>
+        <p>Valor dos Ativos Corrigidos até a Aposentadoria: {{ Valor_ativos_corrigidos_ate_aposentadoria }}</p>
+        <p>Volume Precisa Acumular: {{ volume_precisa_acumular }}</p>
+        <p>Valor que Deve Juntar Anualmente: {{ Valor_que_deve_juntar_anualmente }}</p>
+        <p>Valor que Deve Juntar Mensalmente: {{ Valor_que_deve_juntar_mensalmente }}</p>
     </div>
 {% endblock %}
