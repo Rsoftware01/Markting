@@ -1,14 +1,12 @@
-# criar as rotas do site, os links
-
-from flask import render_template, redirect, url_for, request, flash
+import pdfkit
+from flask import render_template, Response
+from flask import redirect, url_for, request, flash
 from fakepinterest import app, database
 from fakepinterest.models import Usuario, Info, OutraInfo
 from flask_login import login_required
 from fakepinterest.forms import FormPagina1, FormPagina2, FormPagina3
 from math import pow
 from babel.numbers import format_currency
-
-
 
 @app.route("/", methods=["GET", "POST"])
 def homepage():
