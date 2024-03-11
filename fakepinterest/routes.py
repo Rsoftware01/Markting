@@ -27,8 +27,10 @@ def homepage():
                               outras_indicacoes=formlogin.outras_indicacoes.data)
             database.session.add(usuarioo)
             database.session.commit()
+            dados_para_sheets = [[formlogin.nome.data, formlogin.telefone.data, formlogin.email.data]]
             return redirect(url_for('info2'))  # Redireciona para a próxima página após o envio
     return render_template("homepage.html", form=formlogin)
+
 
 @app.route("/info2", methods=["GET", "POST"])
 def info2():
@@ -147,7 +149,7 @@ SAMPLE_SPREADSHEET_ID = "1oz5ej1_0bSxLDJgJRmO2q1wE696mI6pCbkDxbshvMvU"
 SAMPLE_RANGE_NAME = "Pagina1!A2:W"
 
 
-def main():
+def main(dados_para_sheets):
   creds = None
 
   if os.path.exists("token.json"):
@@ -168,23 +170,17 @@ def main():
   try:
     service = build("sheets", "v4", credentials=creds)
 
-    # Call the Sheets API
+    # # Call the Sheets API
     sheet = service.spreadsheets()
     result = (
         sheet.values()
-        .get(spreadsheetId=SAMPLE_SPREADSHEET_ID, range=SAMPLE_RANGE_NAME)
+        .update(spreadsheetId=SAMPLE_SPREADSHEET_ID, range=SAMPLE_RANGE_NAME, valueInputOption="USER_ENTERED",
+                body={'values' : dados_para_sheets})
         .execute()
     )
-    values = result.get("values", [])
 
-    if not values:
-      print("No data found.")
-      return
+    print(result)
 
-    print("Name, Major:")
-    for row in values:
-      # Print columns A and E, which correspond to indices 0 and 4.
-      print(f"{row[0]}, {row[4]}")
   except HttpError as err:
     print(err)
 
