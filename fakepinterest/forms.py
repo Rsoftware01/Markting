@@ -66,3 +66,4 @@ class FormPagina3(FlaskForm):
         usuario = Usuario.query.filter_by(email=email.data).first()
         if usuario:
             raise ValidationError("Email já cadastrado. Preencha com outro.")
+

@@ -133,6 +133,7 @@ def resultados():
                            Valor_que_deve_juntar_mensalmente=Valor_que_deve_juntar_mensalmente)
 
 
+
 import os.path
 
 from google.auth.transport.requests import Request
