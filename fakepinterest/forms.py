@@ -1,3 +1,6 @@
+
+
+#os campos do formulario
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, RadioField, IntegerField, FloatField
 from wtforms.validators import DataRequired, Email, Optional, ValidationError
@@ -18,8 +21,7 @@ class FormPagina1(FlaskForm):
                                   ('Pesquisa_Google', 'Pesquisa no Google')],
                          validators=[DataRequired()])
     outras_indicacoes1 = StringField('Se foi através dos nossos assessores, escreva o nome por favor:',
-                                    validators=[Optional()])
-    outras_indicacoes = StringField(validators=[Optional()])
+        validators=[Optional()])
     submit = SubmitField('Próxima Página')
 
 class FormPagina2(FlaskForm):

@@ -1,4 +1,5 @@
 # criar o modelo do banco de dados
+#aqui é as colunas do formul
 
 from fakepinterest import database, login_manager
 from flask_login import UserMixin
@@ -14,28 +15,25 @@ class Usuario(database.Model, UserMixin):
     email = database.Column(database.String, nullable=False, unique=True)
     telefone = database.Column(database.String, nullable=False)
     indicou = database.Column(database.String, nullable=False)
-    outras_indicacoes = database.Column(database.String, nullable=False)
     outras_indicacoes1 = database.Column(database.String, nullable=False)
-    infos = database.relationship("Info", backref="usuario", lazy=True)  # Relacionamento com a classe Info
-    outras_infos = database.relationship("OutraInfo", backref="usuario", lazy=True)  # Relacionamento com a classe OutraInfo
-
-class Info(database.Model):
-    id = database.Column(database.Integer, primary_key=True)
     objetivoimediato = database.Column(database.String, nullable=False)
     objetivo_imediato_outras = database.Column(database.String, nullable=False)
     objetivo3a5anos = database.Column(database.String, nullable=False)
     objetivo_3a5_anos_outras = database.Column(database.String, nullable=False)
     objetivo5a10anos = database.Column(database.String, nullable=False)
     objetivo_5a10_anos_outras = database.Column(database.String, nullable=False)
-    usuario_id = database.Column(database.Integer, database.ForeignKey('usuario.id'), nullable=False)  # Chave estrangeira
+    idadehoje = database.Column(database.Float, nullable=False)  # Alterado para database.Float
+    valorinvestido = database.Column(database.String, nullable=False)
+    pouparmes = database.Column(database.String, nullable=False)
+    idadeaposentar = database.Column(database.String, nullable=False)
+    rendaaposentar = database.Column(database.String, nullable=False)
+    expectativavida = database.Column(database.String, nullable=False)
+    risco = database.Column(database.String, nullable=False)
 
-class OutraInfo(database.Model):  # Renomeando para evitar conflito
-    id = database.Column(database.Integer, primary_key=True)
-    idadehoje = database.Column(database.String, nullable=False)  # Corrigido para database.Integer
-    valorinvestido = database.Column(database.String, nullable=False)  # Corrigido para database.Float
-    pouparmes = database.Column(database.String, nullable=False)  # Corrigido para database.Float
-    idadeaposentar = database.Column(database.String, nullable=False)  # Corrigido para database.Integer
-    rendaaposentar = database.Column(database.String, nullable=False)  # Corrigido para database.Float
-    expectativavida = database.Column(database.String, nullable=False)  # Corrigido para database.Integer
-    risco = database.Column(database.String, nullable=False)  # Corrigido para database.Integer
-    usuario_id = database.Column(database.Integer, database.ForeignKey('usuario.id'), nullable=False)  # Chave estrangeira
+   # idadehojee = database.Column(database.String, nullable=False)
+    #Tempo_contribuicao = database.Column(database.String, nullable=False)
+    #valoraposentarrr = database.Column(database.String, nullable=False)
+    #Tempo_beneficio = database.Column(database.String, nullable=False)
+   # volume_precisa_acumular = database.Column(database.String, nullable=False)
+    #Valor_que_deve_juntar_anualmente = database.Column(database.String, nullable=False)
+    #Valor_que_deve_juntar_mensalmente = database.Column(database.String, nullable=False)
