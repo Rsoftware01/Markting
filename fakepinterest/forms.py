@@ -26,24 +26,24 @@ class FormPagina1(FlaskForm):
 
 class FormPagina2(FlaskForm):
     objetivo_imediato = RadioField('Qual é o seu objetivo financeiro mais imediato?',
-                                   choices=[('viagem', 'Economizar para uma viagem'),
-                                            ('emergencia', 'Montar uma reserva de emergência'),
-                                            ('dividas', 'Pagar dívidas'),
-                                            ('outras_imediatas', 'Outras')],
+                                   choices=[('Viagem', 'Economizar para uma viagem'),
+                                            ('Emergência', 'Montar uma reserva de emergência'),
+                                            ('Dívidas', 'Pagar dívidas'),
+                                            ('Outros', 'Outras')],
                                    validators=[DataRequired()])
     objetivo_imediato_outras = StringField('Por favor, especifique:', validators=[Optional()])
     objetivo_3a5_anos = RadioField('Qual é o seu objetivo financeiro para os próximos 3 a 5 anos?',
-                                   choices=[('carro', 'Comprar um carro novo'),
-                                            ('educacao', 'Fazer um curso ou investir em educação'),
-                                            ('casa', 'Economizar para uma entrada de casa'),
-                                            ('outras_3a5', 'Outras')],
+                                   choices=[('Carro', 'Comprar um carro novo'),
+                                            ('Educação', 'Fazer um curso ou investir em educação'),
+                                            ('Casa', 'Economizar para uma entrada de casa'),
+                                            ('Outros', 'Outras')],
                                    validators=[DataRequired()])
     objetivo_3a5_anos_outras = StringField('Por favor, especifique:', validators=[Optional()])
     objetivo_5a10_anos = RadioField('Qual é o seu objetivo financeiro para os próximos 5 a 10 anos?',
-                                    choices=[('casa_propria', 'Adquirir uma casa própria'),
-                                             ('negocio', 'Investir em um negócio próprio'),
-                                             ('educacao_filhos', 'Planejar a educação dos filhos'),
-                                             ('outras_5a10', 'Outras')])
+                                    choices=[('Casa_propria', 'Adquirir uma casa própria'),
+                                             ('Negocio', 'Investir em um negócio próprio'),
+                                             ('eEducação_filhos', 'Planejar a educação dos filhos'),
+                                             ('Outros', 'Outras')])
     objetivo_5a10_anos_outras = StringField('Por favor, especifique:', validators=[Optional()])
     submit = SubmitField('Próxima Página')
 
