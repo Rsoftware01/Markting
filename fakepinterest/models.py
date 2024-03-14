@@ -30,10 +30,10 @@ class Usuario(database.Model, UserMixin):
     expectativavida = database.Column(database.String, nullable=False)
     risco = database.Column(database.String, nullable=False)
 
-   # idadehojee = database.Column(database.String, nullable=False)
+    #idadehojee = database.Column(database.String, nullable=False)
     #Tempo_contribuicao = database.Column(database.String, nullable=False)
     #valoraposentarrr = database.Column(database.String, nullable=False)
     #Tempo_beneficio = database.Column(database.String, nullable=False)
-   # volume_precisa_acumular = database.Column(database.String, nullable=False)
+    #volume_precisa_acumular = database.Column(database.String, nullable=False)
     #Valor_que_deve_juntar_anualmente = database.Column(database.String, nullable=False)
-    #Valor_que_deve_juntar_mensalmente = database.Column(database.String, nullable=False)
+   # Valor_que_deve_juntar_mensalmente = database.Column(database.String, nullable=False)

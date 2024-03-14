@@ -8,6 +8,7 @@ import os
 # Configurações do Flask
 app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("DATABASE_URL")
+#app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///database.db"
 app.config["SECRET_KEY"] = "84a79d3c4b03d8747677517aa12c1ef54b044b62"
 
 # Inicialização das extensões
