@@ -169,7 +169,7 @@
     document.getElementById("telefone").oninput = function () {
         var input = this.value.replace(/\D/g, ''); // Remove todos os caracteres que não são dígitos
         var formattedInput = '(' + input.substring(0, 2) + ') ' + input.substring(2); // Adiciona parênteses e espaço
-        this.value = formattedInput.substring(0, 14); // Limita o número de caracteres
+        this.value = formattedInput.substring(0, 12); // Limita o número de caracteres
     };
 </script>
 </html>

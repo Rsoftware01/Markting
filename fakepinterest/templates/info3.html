@@ -189,3 +189,18 @@
         </div>
     </div>
 {% endblock %}
+
+<script>
+    document.getElementById("valor_investido").oninput = function () {
+        var input = this.value.replace(/\D/g, ''); // Remove todos os caracteres que não são dígitos
+        this.value = formattedInput.substring(0, 12); // Limita o número de caracteres
+    };
+     document.getElementById("poupar_mes").oninput = function () {
+        var input = this.value.replace(/\D/g, ''); // Remove todos os caracteres que não são dígitos
+        this.value = formattedInput.substring(0, 12); // Limita o número de caracteres
+    };
+     document.getElementById("renda_aposentar").oninput = function () {
+        var input = this.value.replace(/\D/g, ''); // Remove todos os caracteres que não são dígitos
+        this.value = formattedInput.substring(0, 12); // Limita o número de caracteres
+    };
+</script>
