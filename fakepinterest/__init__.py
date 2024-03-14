@@ -26,6 +26,8 @@ handler = logging.StreamHandler()
 handler.setLevel(logging.INFO)
 logger.addHandler(handler)
 
+# Filtrando apenas mensagens INFO com resultados
+logger.addFilter(lambda record: record.levelno == logging.INFO and "cached since" in record.msg)
+
 # Import dos blueprints ou módulos
 from fakepinterest import routes
-
