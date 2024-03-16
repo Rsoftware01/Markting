@@ -1,6 +1,3 @@
-
-
-#os campos do formulario
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, RadioField, IntegerField, FloatField
 from wtforms.validators import DataRequired, Email, Optional, ValidationError
@@ -68,4 +65,3 @@ class FormPagina3(FlaskForm):
         usuario = Usuario.query.filter_by(email=email.data).first()
         if usuario:
             raise ValidationError("Email já cadastrado. Preencha com outro.")
-

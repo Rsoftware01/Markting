@@ -132,13 +132,6 @@
             <h1 class="titu">Seja Bem Vindo!</h1>
             {{ form.csrf_token }}
 
-            <!-- Mensagens de erro -->
-            {% for message in get_flashed_messages() %}
-            <div class="flash-message">
-                {{ message }}
-            </div>
-            {% endfor %}
-
             <div>
                 {{ form.nome.label(class="bold-label") }}<br>
                 {{ form.nome() }}

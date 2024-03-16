@@ -1,5 +1,3 @@
-
-#parte das rotas
 from flask import render_template, redirect, url_for, flash, session
 from flask import redirect, url_for, request, flash
 from fakepinterest import app, database
@@ -8,8 +6,8 @@ from flask_login import login_required
 from fakepinterest.forms import FormPagina1, FormPagina2, FormPagina3
 from math import pow
 from babel.numbers import format_currency
-from flask import session
 
+@app.route("/", methods=["GET", "POST"])
 def homepage():
     formlogin = FormPagina1()
     if formlogin.validate_on_submit():
@@ -20,7 +18,6 @@ def homepage():
         session['outras_indicacoes1'] = formlogin.outras_indicacoes1.data
         return redirect(url_for('info2'))  # Redireciona para a próxima página após o envio
     return render_template("homepage.html", form=formlogin)
-
 
 
 @app.route("/info2", methods=["GET", "POST"])
