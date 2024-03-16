@@ -21,17 +21,17 @@ login_manager.login_view = "info3"
 login_manager.login_view = "resultados"
 
 # Configuração do logger para o SQLAlchemy
-#logging.basicConfig()
-#logger = logging.getLogger("sqlalchemy.engine")
-#logger.setLevel(logging.INFO)
+logging.basicConfig()
+logger = logging.getLogger("sqlalchemy.engine")
+logger.setLevel(logging.INFO)
 
 # Configuração do handler do logger para imprimir no console
-#handler = logging.StreamHandler()
-#handler.setLevel(logging.INFO)
-#logger.addHandler(handler)
+handler = logging.StreamHandler()
+handler.setLevel(logging.INFO)
+logger.addHandler(handler)
 
 # Filtrando apenas mensagens INFO com resultados
-#logger.addFilter(lambda record: record.levelno == logging.INFO and "cached since" in record.msg)
+logger.addFilter(lambda record: record.levelno == logging.INFO and "cached since" in record.msg)
 
 # Import dos blueprints ou módulos
 from fakepinterest import routes
