@@ -1,3 +1,4 @@
+import pdfkit
 from flask import render_template, redirect, url_for, flash, session
 from flask import redirect, url_for, request, flash
 from fakepinterest import app, database
@@ -18,7 +19,6 @@ def homepage():
         session['outras_indicacoes1'] = formlogin.outras_indicacoes1.data
         return redirect(url_for('info2'))  # Redireciona para a próxima página após o envio
     return render_template("homepage.html", form=formlogin)
-
 
 @app.route("/info2", methods=["GET", "POST"])
 def info2():

@@ -1,3 +1,4 @@
+#os campos do formulario
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, RadioField, IntegerField, FloatField
 from wtforms.validators import DataRequired, Email, Optional, ValidationError
