@@ -16,9 +16,6 @@ database = SQLAlchemy(app)
 bcrypt = Bcrypt(app)
 login_manager = LoginManager(app)
 login_manager.login_view = "homepage"
-login_manager.login_view = "info2"
-login_manager.login_view = "info3"
-login_manager.login_view = "resultados"
 
 # Configuração do logger para o SQLAlchemy
 logging.basicConfig()
