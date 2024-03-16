@@ -1,4 +1,5 @@
-import pdfkit
+
+#parte das rotas
 from flask import render_template, redirect, url_for, flash, session
 from flask import redirect, url_for, request, flash
 from fakepinterest import app, database
@@ -7,18 +8,30 @@ from flask_login import login_required
 from fakepinterest.forms import FormPagina1, FormPagina2, FormPagina3
 from math import pow
 from babel.numbers import format_currency
+from flask import session
 
 @app.route("/", methods=["GET", "POST"])
 def homepage():
     formlogin = FormPagina1()
     if formlogin.validate_on_submit():
-        session['nome'] = formlogin.nome.data
-        session['telefone'] = formlogin.telefone.data
-        session['email'] = formlogin.email.data
-        session['indicou'] = formlogin.indicou.data
-        session['outras_indicacoes1'] = formlogin.outras_indicacoes1.data
-        return redirect(url_for('info2'))  # Redireciona para a próxima página após o envio
+        # Verifica se o e-mail já está cadastrado
+        email = formlogin.email.data
+        usuario = Usuario.query.filter_by(email=email).first()
+        if usuario:
+            # Se o e-mail já estiver cadastrado, exibe uma mensagem de erro
+            flash("O e-mail já está cadastrado. Por favor, insira outro e-mail.", "error")
+            return render_template("homepage.html", form=formlogin)
+        else:
+            # Se o e-mail não estiver cadastrado, armazena os dados na sessão e redireciona para a próxima página
+            session['nome'] = formlogin.nome.data
+            session['telefone'] = formlogin.telefone.data
+            session['email'] = formlogin.email.data
+            session['indicou'] = formlogin.indicou.data
+            session['outras_indicacoes1'] = formlogin.outras_indicacoes1.data
+            return redirect(url_for('info2'))  # Redireciona para a próxima página após o envio
+
     return render_template("homepage.html", form=formlogin)
+
 
 @app.route("/info2", methods=["GET", "POST"])
 def info2():

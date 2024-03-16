@@ -23,11 +23,11 @@ class Usuario(database.Model, UserMixin):
     objetivo5a10anos = database.Column(database.String, nullable=False)
     objetivo_5a10_anos_outras = database.Column(database.String, nullable=False)
     idadehoje = database.Column(database.Float, nullable=False)  # Alterado para database.Float
-    valorinvestido = database.Column(database.String, nullable=False)
-    pouparmes = database.Column(database.String, nullable=False)
-    idadeaposentar = database.Column(database.String, nullable=False)
-    rendaaposentar = database.Column(database.String, nullable=False)
-    expectativavida = database.Column(database.String, nullable=False)
+    valorinvestido = database.Column(database.Float, nullable=False)
+    pouparmes = database.Column(database.Float, nullable=False)
+    idadeaposentar = database.Column(database.Float, nullable=False)
+    rendaaposentar = database.Column(database.Float, nullable=False)
+    expectativavida = database.Column(database.Float, nullable=False)
     risco = database.Column(database.String, nullable=False)
 
     #idadehojee = database.Column(database.String, nullable=False)

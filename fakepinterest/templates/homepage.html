@@ -96,6 +96,7 @@
 
         }
 
+
         .form-container input[type="submit"]:hover {
             background-color: #0056b3;
         }
@@ -124,41 +125,50 @@
 </head>
 {% block body %}
 <body>
-    <div class="container">
-        <div class="form-container">
-            <form method="POST">
-                <img class="img" src="https://petropolisinvestimentos.com.br/wp-content/uploads/2023/09/logo-neg-simple.png.webp" alt="Logo">
-                <h1 class="titu">Seja Bem Vindo!</h1>
-                {{ form.csrf_token }}
-                {% for message in get_flashed_messages() %}
-                    <div class="flash-message">
-                        {{ message }}
-                    </div>
+   <div class="container">
+    <div class="form-container">
+        <form method="POST">
+            <img class="img" src="https://petropolisinvestimentos.com.br/wp-content/uploads/2023/09/logo-neg-simple.png.webp" alt="Logo">
+            <h1 class="titu">Seja Bem Vindo!</h1>
+            {{ form.csrf_token }}
+
+            <!-- Mensagens de erro -->
+            {% for message in get_flashed_messages() %}
+            <div class="flash-message">
+                {{ message }}
+            </div>
+            {% endfor %}
+
+            <div>
+                {{ form.nome.label(class="bold-label") }}<br>
+                {{ form.nome() }}
+            </div>
+            <div>
+                {{ form.telefone.label(class="bold-label") }}<br>
+                {{ form.telefone(id="telefone") }}
+            </div>
+            <div>
+                {{ form.email.label(class="bold-label") }}<br>
+                {{ form.email() }}
+                <!-- Exibe mensagens de erro para o campo de e-mail -->
+                {% for error in form.email.errors %}
+                <div class="flash-message">
+                    {{ error }}
+                </div>
                 {% endfor %}
-                <div>
-                    {{ form.nome.label(class="bold-label") }}<br>
-                    {{ form.nome() }}
-                </div>
-                <div>
-                    {{ form.telefone.label(class="bold-label") }}<br>
-                    {{ form.telefone(id="telefone") }}
-                </div>
-                <div>
-                    {{ form.email.label(class="bold-label") }}<br>
-                    {{ form.email() }}
-                </div>
-                <div>
-                    {{ form.indicou.label(class="bold-label") }}<br>
-                    {{ form.indicou(class="objetivos-container") }}
-                    {{ form.outras_indicacoes1.label(class="bold-lab") }}
-                    {{ form.outras_indicacoes1() }}
-                </div>
-                <div>
-                    {{ form.submit(class="bold-label butt") }}
-                </div>
-            </form>
-        </div>
+            </div>
+            <div>
+                {{ form.indicou.label(class="bold-label") }}<br>
+                {{ form.indicou(class="objetivos-container") }}
+                {{ form.outras_indicacoes1.label(class="bold-lab") }}
+                {{ form.outras_indicacoes1() }}
+            </div>
+            <div>
+                {{ form.submit(class="bold-label butt") }}
+            </div>
+        </form>
     </div>
+</div>
 </body>
 {% endblock %}
 
